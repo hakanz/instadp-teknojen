@@ -1,13 +1,18 @@
-<?php 
-require_once("fonksiyonlar.php"); 
-include("header.php");
-$id = $_GET["id"];
-	if (isset($id) and gecerliMi($id)){
-		$idGecerli = true;
-	}else{
-		$idGecerli = false;
-	}
-?>
+	<?php 
+	require_once("fonksiyonlar.php"); 
+	include("header.php");
+	$id = $_GET["id"];
+		if (isset($id) and gecerliMi($id)){
+			$idGecerli = true;
+			echo '<meta name="robots" content="noindex">
+				<meta property="og:image" content="https://teknojen.net/instagramdp/get.php?id='.$id.'&ne=img&ufak=1">
+				<meta property="twitter:image" content="https://teknojen.net/instagramdp/get.php?id='.$id.'&ne=img&ufak=1">
+				';
+		}else{
+			$idGecerli = false;
+		}
+	?>
+	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +32,7 @@ $id = $_GET["id"];
 		</nav>
 		<div class="container">
 			<div class="col">
-				<h2 class="text-center" style="margin-top:1%">Full Size Instagram Profile Picture Viewer</h2>
+				<h2 class="text-center" style="margin-top:1%">Instagram Display Picture Downloader & Viewer</h2>
 			</div>
 				<div class="row">
 				  <div class="col">
@@ -47,7 +52,17 @@ $id = $_GET["id"];
 					</div>
                   </div>
 				</div>
-				<hr>
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- Büyük Reklam -->
+				<ins class="adsbygoogle"
+					 style="display:block"
+					 data-ad-client="ca-pub-4805334974393671"
+					 data-ad-slot="2381584510"
+					 data-ad-format="auto"
+					 data-full-width-responsive="true"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
 				<div id="sonucNedir" class="container text-center" style="margin-top: 1%"></div>
 			<div class="card">
 			  <div class="card-header">
@@ -64,7 +79,7 @@ $id = $_GET["id"];
 			<hr>
 			<div class="card">
 			  <div class="card-header">
-				  <h3>Downloading Full Size Instagram Profile Image</h3>
+				  <h3>Downloading Full Size Instagram Display Picture</h3>
 			  </div>
 			  <div class="card-body">
 				<blockquote class="blockquote mb-0">

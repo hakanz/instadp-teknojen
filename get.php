@@ -15,9 +15,15 @@
 						$w = $w-($w/7);
 						$h = $h-($h/7);
 					}
+					lo("get.php: ".$id." kullanıcı adı için sorgulama yapılıyor.");
 					echo '<div class="container text-center" float="left" style="margin-top: 1%"><h2 style="margin-left:%3" id="dl">Instagram Full Size Profile Picture of '.$d["name"].'</h2></div>
 					<img class="img-thumbnail rounded" src="'.$d["img"].'" width="'.$w.'" height="'.$h.'" alt="'.$d["name"].'\'s Full Size Profile Picture" title="To download right click/long press and select Save As">
-					<div class="row-md"><a style="margin-top:2%;margin-bottom:2%" class="btn btn-primary btn-lg" href="'.$d["img"].'" target="_blank"><i class="fas fa-search"></i>&nbsp;See Full Size Profile Image</a></div>';
+					<div class="row-md"><a style="margin-top:2%;margin-bottom:2%" class="btn btn-primary btn-md" href="'.$d["img"].'" target="_blank"><i class="fas fa-search"></i>&nbsp;See Full Size Profile Image</a>
+					<a style="margin-top:2%;margin-bottom:2%" class="btn btn-danger btn-md" href="https://www.instagram.com/'.$id.'/" target="_blank"><i class="fab fa-instagram"></i>&nbsp;Go to Profile</a>
+					<a style="margin-top:2%;margin-bottom:2%" class="btn btn-info btn-md" href="https://twitter.com/share?url=https://teknojen.net/instagramdp/&text=Instagram%20Profile%20Picture%20Downloader" target="_blank"><i class="fab fa-twitter"></i></a>
+					<a style="margin-top:2%;margin-bottom:2%" class="btn btn-primary btn-md" href="https://www.facebook.com/sharer/sharer.php?u=https://teknojen.net/instagramdp/" target="_blank"><i class="fab fa-facebook"></i></a>
+					</div>';
+					$q = 0;
 					if ($d["fotolar"] != false){
 						echo '<h2 style="margin-left:%3" id="dl">Other Instagram Pictures of '.$d["name"].'</h2>';
 						foreach($d["fotolar"] as $f){
@@ -28,7 +34,23 @@
 								$h = $h-($h/7);
 							}
 							echo '<img class="img-thumbnail rounded" src="'.$f["url"].'" width="'.$w.'" height="'.$h.'" alt="'.$d["name"].'\'s Full Size Instagram Picture" title="To download right click/long press and select Save As">
-								<div class="row-md"><a style="margin-top:2%;margin-bottom:2%" class="btn btn-primary btn-lg" href="'.$d["url"].'" target="_blank"><i class="fas fa-search"></i>&nbsp;See Full Image</a></div>';
+								<div class="row-md">
+								<a style="margin-top:2%;margin-bottom:2%" class="btn btn-primary btn-md" href="'.$f["url"].'" target="_blank"><i class="fas fa-search"></i>&nbsp;See Full Image</a>
+								<a style="margin-top:2%;margin-bottom:2%" class="btn btn-danger btn-md" href="https://www.instagram.com/p/'.$f["kisaKodu"].'/" target="_blank"><i class="fab fa-instagram"></i>&nbsp;Go to Instagram Post</a>
+								</div>';
+							if ($q == 4){
+								echo '<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+								<ins class="adsbygoogle"
+									 style="display:block"
+									 data-ad-client="ca-pub-4805334974393671"
+									 data-ad-slot="2381584510"
+									 data-ad-format="auto"
+									 data-full-width-responsive="true"></ins>
+								<script>
+								(adsbygoogle = window.adsbygoogle || []).push({});
+								</script>';
+							}
+							$q++;
 						}
 					}
 				}else{
@@ -38,6 +60,7 @@
 				echo '<div class="alert alert-danger" role="alert">Instagram username or URL not found!</div>';
 			}
 		}elseif ($ne == "img"){
+			log("get.php: Direkt resim erişimi istendi. ".$id);
 			$d = getData($id);
 			if ($d != false){
 				header("Content-type: image/jpeg");
@@ -61,7 +84,7 @@
 		echo '<div class="alert alert-danger" role="alert">Profile URL or username is incorrect!</div>';
 	}
 	function slaytYap(){
-		lo("Kullanıcı için slayt oluşturuluyor");
+		//lo("Kullanıcı için slayt oluşturuluyor");
 		$kimler = array(
 			"210746792", #realbarbarapalvin
 			"301763305", #adrianalima
@@ -87,12 +110,12 @@
 			if ($ind <= 4){
 				$src = idNumarasiylaGetir($kim);
 				if ($src != false){
-					echo '<div class="col-3 float-left"><a href="http://apps.teknojen.net/ig/?id='.$src["kullaniciAdi"].'"><img class="img-fluid" width="320" height="320" alt="'.$src["name"].'\'s Profile Image" src="'.$src["ufakResim"].'"></a></div>';
+					echo '<div class="col-3 float-left"><a href="https://teknojen.net/instagramdp/?id='.$src["kullaniciAdi"].'"><img class="img-fluid" width="320" height="320" alt="'.$src["name"].'\'s Profile Image" src="'.$src["ufakResim"].'"></a></div>';
 				}else{
 					if (!isset($src["username"])){
-						echo '<div class="col-3 float-left"><a href="http://apps.teknojen.net/ig/?id=realbarbarapalvin"><img class="img-fluid" width="320" height="320" alt="Barbara Palvin\'s Profile Image" src="http://apps.teknojen.net/ig/get.php?id=realbarbarapalvin&ufak=1&ne=img"></a></div>';
+						echo '<div class="col-3 float-left"><a href="https://teknojen.net/instagramdp/?id=realbarbarapalvin"><img class="img-fluid" width="320" height="320" alt="Barbara Palvin\'s Profile Image" src="https://teknojen.net/instagramdp/get.php?id=realbarbarapalvin&ufak=1&ne=img"></a></div>';
 					}else{
-						echo '<div class="col-3 float-left"><a href="http://apps.teknojen.net/ig/?id='.$src["username"].'"><img class="img-fluid" width="320" height="320" alt="'.$src["name"].'\'s Profile Image" src="http://apps.teknojen.net/ig/get.php?id='.$src["username"].'?ufak=1&ne=img"></a></div>';
+						echo '<div class="col-3 float-left"><a href="https://teknojen.net/instagramdp/?id='.$src["username"].'"><img class="img-fluid" width="320" height="320" alt="'.$src["name"].'\'s Profile Image" src="https://teknojen.net/instagramdp/get.php?id='.$src["username"].'?ufak=1&ne=img"></a></div>';
 					}
 				}
 			}

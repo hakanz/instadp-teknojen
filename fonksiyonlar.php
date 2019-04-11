@@ -35,8 +35,9 @@
 
 	function isChachedJs($id){
 		$klasor = "cache";
-		$tarih = $klasor."/".$id."_tarih";
-		$json = $klasor."/".$id."_info.js";
+		$t = md5(date('d.m.Y'));
+		$tarih = $klasor."/".$id."_".$t;
+		$json = $klasor."/".$id."_info_".$t.".js";
 		if (!file_exists($tarih)){
 			$js = getir("https://i.instagram.com/api/v1/users/$id/info/");
 			if ($js != false){
@@ -47,7 +48,7 @@
 				$t = mktime(date("H"),date("i"),date("s"),date("n"),date("j"),date("Y"),-1);
 				fwrite($f,$t);
 				fclose($f);
-				lo("Cache bulunmadığı için yenisi oluşturuldu");
+				//lo("Cache bulunmadığı için yenisi oluşturuldu");
 				return $js;
 			}else{
 				return false;
@@ -55,7 +56,7 @@
 		}else{
 			$js = file_get_contents($json);
 			$stamp = file_get_contents($tarih);
-			lo("Cache bulunduğu için veri diskten getirildi");
+			//lo("Cache bulunduğu için veri diskten getirildi");
 			return $js;
 		}
 	}
@@ -148,7 +149,7 @@
 
 	function lo($hubele){
 		$hebele = fopen("log","a+");
-	fwrite($hebele,"\n[".date('d.m.Y H:i:s')."] [".$hubele."] [".ip()."]");
+		fwrite($hebele,"\n[".date('d.m.Y H:i:s')."] [".$hubele."] [".ip()."]");
 		fclose($hebele);
 	}
 
